@@ -1,0 +1,22 @@
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="name"
+             type="text"
+             [(ngModel)] = "nameNewNode"
+             name="name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="multiplicationFactor"
+             type="number"
+             [(ngModel)] = "multiplicationFactor"
+             name="multiplicationFactor">
+    </mat-form-field>
+  </p>
+
+<h1 mat-dialog-title>Favorite Animal</h1>
+<div mat-dialog-content>
+  Id is: {{data | json}}
+  <div mat-dialog-actions>
+    <button mat-button  mat-dialog-close (click)="addNode(data) ">Add</button>
+  </div>
+</div>
