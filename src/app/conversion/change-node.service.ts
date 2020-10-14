@@ -1,4 +1,7 @@
-import {Injectable} from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+
+
 import {UNITS} from '../shared/unitsArray';
 import {MeasurementUnit} from '../shared/measurementUnit.model';
 
@@ -8,6 +11,9 @@ import {MeasurementUnit} from '../shared/measurementUnit.model';
 export class ChangeNodeService {
   units = UNITS;
   private lastId: number = 7;
+
+  private selectedItem = new BehaviorSubject<MeasurementUnit>(this.units[0]);
+  cast = this.selectedItem.asObservable();
 
   constructor() {
   }
@@ -60,5 +66,6 @@ export class ChangeNodeService {
 
   selectNode(parent) {
     console.log(parent)
+    this.selectedItem.next(parent)
   }
 }

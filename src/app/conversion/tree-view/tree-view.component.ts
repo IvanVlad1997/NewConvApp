@@ -14,9 +14,7 @@ import {DialogEditComponent} from '../dialog-edit/dialog-edit.component';
 export class TreeViewComponent implements OnInit {
 
   selected: MeasurementUnit;
-  // @Input() treeView: MeasurementUnit;
-
-  // @Output() public selected: EventEmitter<MeasurementUnit>;
+  @Input() treeView: MeasurementUnit;
 
   constructor(private changeNodeService: ChangeNodeService,
               public dialog: MatDialog) {

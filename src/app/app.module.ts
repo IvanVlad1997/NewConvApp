@@ -18,8 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './conversion/dialog/dialog.component';
 import { DialogEditComponent } from './conversion/dialog-edit/dialog-edit.component';
 import { ConverisonSpotComponent } from './conversion/converison-spot/converison-spot.component';
-import {SELECTED_ITEM_TOKEN} from "./tokens/selectedItemInjectionToken";
-import {UNITS} from "./shared/unitsArray";
+
 
 @NgModule({
   declarations: [
@@ -49,7 +48,7 @@ import {UNITS} from "./shared/unitsArray";
     TreeViewComponent
   ],
   providers: [
-    { provide: SELECTED_ITEM_TOKEN, useValue: TreeViewComponent, multi: true}
+    
   ],
   entryComponents:[DialogComponent, DialogEditComponent],
   bootstrap: [AppComponent]
