@@ -29,6 +29,7 @@ export class ConverisonSpotComponent implements OnInit {
       this.arrayWithSelectedAndParent = array
       this.selectedNode  = this.arrayWithSelectedAndParent[0] ;
       this.parentNode = this.arrayWithSelectedAndParent[1];
+
     });
 
   }

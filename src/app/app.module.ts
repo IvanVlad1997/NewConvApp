@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './conversion/dialog/dialog.component';
 import { DialogEditComponent } from './conversion/dialog-edit/dialog-edit.component';
 import { ConverisonSpotComponent } from './conversion/converison-spot/converison-spot.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ConverisonSpotComponent } from './conversion/converison-spot/converison
     MatDialogModule,
     MatIconModule,
     MatSelectModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule
   ],
 
   providers: [],

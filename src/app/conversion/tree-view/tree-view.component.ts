@@ -21,6 +21,7 @@ export class TreeViewComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   openDialog(unit) {
@@ -42,6 +43,7 @@ export class TreeViewComponent implements OnInit {
   }
 
   selectNode(unit: MeasurementUnit) {
+    console.log(unit)
     this.selected = unit;
     this.changeNodeService.selectNode(unit);
   }
