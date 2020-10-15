@@ -1,29 +1,31 @@
-<div>
-<mat-form-field class="example-form-field">
-  <mat-label>Input Value Minute</mat-label>
-  <input matInput type="text" [(ngModel)]="value">
-  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=0">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
-</div>
-<div>
-<mat-form-field class="example-form-field">
-  <mat-label>Output Value</mat-label>
-  <input matInput type="text" [(ngModel)]="outputValue">
-  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=0">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
-  <h4>Basic mat-select</h4>
-  <mat-form-field appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let unit of units.nodes" [value]="unit.name">
-        {{unit.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+
+<div *ngIf = "parentNode !== undefined">
+  <div >
+    <mat-form-field class="example-form-field">
+      <mat-label>{{selectedNode.name || "Input Value"}}  </mat-label>
+      <input matInput type="text" (input)="changeInput()" [(ngModel)]="value">
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=0">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field >
+      <mat-label>{{selectedValue || "Output Value"}}</mat-label>
+      <input matInput type="text" [(ngModel)]="outputValue">
+    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select unit</mat-label>
+        <mat-select [(ngModel)]="selectedValue" (selectionChange)= "changeInput()">
+          <mat-option *ngFor="let unit of parentNode.nodes" [value]="unit.name" >
+            {{unit.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
 </div>
 
-<button (click) ="test()">Ckucsd</button>
+
+<div *ngIf = "parentNode === undefined">
+    <h1>Select unit</h1>
+</div>

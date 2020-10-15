@@ -19,7 +19,7 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  addNode(parent){
+  addNode(parent) {
     console.log(parent);
     console.log(this.nameNewNode);
     this.changeNodeService.addNode(parent, this.nameNewNode, this.multiplicationFactor);

@@ -62,36 +62,21 @@ export class ChangeNodeService {
   }
 
   selectNode(selectedItem: MeasurementUnit) {
-    console.log(selectedItem);
-    let forReturn: MeasurementUnit;
-    let parentNode: MeasurementUnit = this.travelTreeForSelect(this.units, selectedItem.parentId, forReturn);
-    console.log(forReturn);
-    console.log(parentNode);
-    let arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
+    let parentNode = this.travelTreeForSelect(this.units, selectedItem.parentId);
+    const arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
+    console.log(arrayWithSelectedAndParent);
     this.selectedItem.next(arrayWithSelectedAndParent);
   }
 
-  travelTreeForSelect(units: MeasurementUnit[], parentId: number, forReturn: MeasurementUnit): void {
-    let parentNode: MeasurementUnit;
-
-    console.log("entered travel tree for select");
-    for ( parentNode of units) {
-      console.log("in for");
-      if (parentNode.nodes.length === 0) {
+  travelTreeForSelect(units: MeasurementUnit[], parentId: number): MeasurementUnit {
+    for ( let parentNode of units) {
+       if (parentNode.nodes.length === 0) {
         continue;
       }
-      console.log(parentId);
-      console.log(parentNode.id);
-      if (parentId === parentNode.id) {
-        console.log('gasit' + JSON.stringify(parentNode));
-        console.log(parentNode);
-        forReturn = parentNode;
-        console.log(forReturn);
-
-        return;
+       if (parentId === parentNode.id) {
+        return parentNode;
       } else {
-        this.travelTreeForSelect(parentNode.nodes, parentId, forReturn);
-
+         return this.travelTreeForSelect(parentNode.nodes, parentId);
       }
     }
   }
