@@ -14,20 +14,25 @@ export class ConverisonSpotComponent implements OnInit {
   value = 0;
   outputValue: number;
   units = UNITS;
-  selectedId: MeasurementUnit;
+  arrayWithSelectedAndParent: MeasurementUnit[];
+  selectedNode: MeasurementUnit;
+  parentNode: MeasurementUnit;
 
 
-  constructor(private changeNodeService: ChangeNodeService ) { }
+
+  constructor(private changeNodeService: ChangeNodeService) {
+  }
 
   ngOnInit() {
-    this.changeNodeService.cast.subscribe(selected=> this.selectedId = selected)
+    this.changeNodeService.cast.subscribe(array => this.arrayWithSelectedAndParent = array);
+    this.selectedNode  = this.arrayWithSelectedAndParent[0] ;
+    this.parentNode = this.arrayWithSelectedAndParent[1];
   }
 
   test() {
-    console.log(this.selectedId)
+    console.log(this.selectedNode)
+    console.log(this.parentNode);
   }
-
-
 
 
 }

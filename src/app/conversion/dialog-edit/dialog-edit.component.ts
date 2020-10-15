@@ -19,9 +19,9 @@ export class DialogEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  editNode(parent){
+  editNode(parent) {
     console.log(parent);
-    console.log(this.nameNewNode)
+    console.log(this.nameNewNode);
     this.changeNodeService.editNode(parent, this.nameNewNode, this.multiplicationFactor);
   }
 }

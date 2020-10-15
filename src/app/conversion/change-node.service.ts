@@ -1,6 +1,5 @@
-import { BehaviorSubject } from 'rxjs';
-import { Injectable } from '@angular/core';
-
+import {BehaviorSubject} from 'rxjs';
+import {Injectable} from '@angular/core';
 
 import {UNITS} from '../shared/unitsArray';
 import {MeasurementUnit} from '../shared/measurementUnit.model';
@@ -11,12 +10,12 @@ import {MeasurementUnit} from '../shared/measurementUnit.model';
 export class ChangeNodeService {
   units = UNITS;
   private lastId: number = 7;
-
-  private selectedItem = new BehaviorSubject<MeasurementUnit>(this.units[0]);
+  private selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.units);
   cast = this.selectedItem.asObservable();
 
   constructor() {
   }
+
 
   addNode(parent: MeasurementUnit, nameNewNode: string, multiplicationFactor: number): void {
     this.lastId++;
@@ -29,17 +28,15 @@ export class ChangeNodeService {
       factor: multiplicationFactor,
     });
     console.log();
-
-
   }
 
-  travelTree(units, parentId, id) {
+
+  travelTreeForDelete(units: MeasurementUnit[], parentId: number, id: number) {
     for (let parentNode of units) {
       if (parentNode.nodes.length === 0) {
         continue;
       }
       // console.log(parentNode.nodes);
-
       if (parentId === parentNode.id) {
         console.log('gasit' + JSON.stringify(parentNode));
         let newArray = parentNode.nodes.filter((nod) => nod.id !== id);
@@ -49,12 +46,12 @@ export class ChangeNodeService {
         console.log(units);
         return;
       }
-      this.travelTree(parentNode.nodes, parentId, id);
+      this.travelTreeForDelete(parentNode.nodes, parentId, id);
     }
   }
 
-  deleteNode(parent) {
-    this.travelTree(this.units, parent.parentId, parent.id);
+  deleteNode(unit) {
+    this.travelTreeForDelete(this.units, unit.parentId, unit.id);
     // console.log(parent.parentId);
   }
 
@@ -64,8 +61,38 @@ export class ChangeNodeService {
     console.log(parent);
   }
 
-  selectNode(parent) {
-    console.log(parent)
-    this.selectedItem.next(parent)
+  selectNode(selectedItem: MeasurementUnit) {
+    console.log(selectedItem);
+    let forReturn: MeasurementUnit;
+    let parentNode: MeasurementUnit = this.travelTreeForSelect(this.units, selectedItem.parentId, forReturn);
+    console.log(forReturn);
+    console.log(parentNode);
+    let arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
+    this.selectedItem.next(arrayWithSelectedAndParent);
+  }
+
+  travelTreeForSelect(units: MeasurementUnit[], parentId: number, forReturn: MeasurementUnit): void {
+    let parentNode: MeasurementUnit;
+
+    console.log("entered travel tree for select");
+    for ( parentNode of units) {
+      console.log("in for");
+      if (parentNode.nodes.length === 0) {
+        continue;
+      }
+      console.log(parentId);
+      console.log(parentNode.id);
+      if (parentId === parentNode.id) {
+        console.log('gasit' + JSON.stringify(parentNode));
+        console.log(parentNode);
+        forReturn = parentNode;
+        console.log(forReturn);
+
+        return;
+      } else {
+        this.travelTreeForSelect(parentNode.nodes, parentId, forReturn);
+
+      }
+    }
   }
 }

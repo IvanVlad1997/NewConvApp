@@ -25,11 +25,8 @@ import { ConverisonSpotComponent } from './conversion/converison-spot/converison
     AppComponent,
     TreeViewComponent,
     ConversionComponent,
-
     DialogComponent,
-
     DialogEditComponent,
-
     ConverisonSpotComponent,
   ],
   imports: [
@@ -47,9 +44,7 @@ import { ConverisonSpotComponent } from './conversion/converison-spot/converison
   exports: [
     TreeViewComponent
   ],
-  providers: [
-    
-  ],
+  providers: [],
   entryComponents:[DialogComponent, DialogEditComponent],
   bootstrap: [AppComponent]
 })

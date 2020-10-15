@@ -23,27 +23,18 @@ export class TreeViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick() {
-    console.log('sad');
-    // console.log(this.treeView);
-  }
-
-  // toggleUnit(unit) {
-  //   unit.
-  // }
-
   openDialog(unit) {
     this.dialog.open(DialogComponent, {
       data: unit
     });
   }
 
-  deleteNode(parent) {
-    console.log(parent);
-    this.changeNodeService.deleteNode(parent);
+  deleteNode(unit: MeasurementUnit) {
+    console.log(unit);
+    this.changeNodeService.deleteNode(unit);
   }
 
-  editNode(unit) {
+  editNode(unit: MeasurementUnit) {
     console.log(unit);
     this.dialog.open(DialogEditComponent, {
       data: unit
@@ -54,14 +45,5 @@ export class TreeViewComponent implements OnInit {
     this.selected = unit;
     this.changeNodeService.selectNode(unit);
   }
-
-  // let injector: Injector = Injector.create({
-  //   providers: [
-  //     { provide: SELECTED_ITEM_TOKEN,
-  //       useValue: TreeViewComponent,
-  //       multi: true}
-  //       ],
-  //   parent: this.injector
-  // })
 
 }
