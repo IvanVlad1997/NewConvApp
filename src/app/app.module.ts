@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { TreeViewComponent } from './conversion/tree-view/tree-view.component';
 import { ConversionComponent } from './conversion/conversion.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule }  from '@angular/material/form-field';
 import { MatInputModule }  from '@angular/material';
@@ -40,10 +42,9 @@ import { ConverisonSpotComponent } from './conversion/converison-spot/converison
     MatDialogModule,
     MatIconModule,
     MatSelectModule,
+    FlexLayoutModule
   ],
-  exports: [
-    TreeViewComponent
-  ],
+
   providers: [],
   entryComponents:[DialogComponent, DialogEditComponent],
   bootstrap: [AppComponent]

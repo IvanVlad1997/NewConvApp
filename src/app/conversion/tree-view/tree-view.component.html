@@ -1,18 +1,19 @@
-
-
 <div *ngIf="treeView">
-<div >
-  <div  *ngFor="let unit of treeView">
-    <div >
-      <div class="ml-10"><span (click)="selectNode(unit)">{{unit.name}}</span><div>
-          <button (click)="openDialog(unit)" > ADD</button>
-          <button (click) ="deleteNode(unit)"> Delete</button>
-          <button (click) ="editNode(unit)">Edit</button>
-    </div>
+  <ul >
+    <li  *ngFor="let unit of treeView">
+      <div >
+          <div class="ml-10"><span (click)="selectNode(unit)">{{unit.name}}</span><div>
+              <button (click)="openDialog(unit)" > ADD</button>
+              <button (click) ="deleteNode(unit)"> Delete</button>
+              <button (click) ="editNode(unit)">Edit</button>
+        </div>
 
-      <app-tree-view *ngIf="unit.nodes.length >0" [treeView]="unit.nodes" ></app-tree-view>
-    </div>
-</div>
+          <app-tree-view *ngIf="unit.nodes.length >0" [treeView]="unit.nodes" ></app-tree-view>
+        </div>
+      </div>
+    </li>
+
+  </ul>
 </div>
 
 
