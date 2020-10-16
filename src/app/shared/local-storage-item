@@ -1,0 +1,24 @@
+import {BehaviorSubject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {UNITS} from '../shared/unitsArray';
+import {MeasurementUnit} from '../shared/measurementUnit.model';
+import {ChangeNodeService} from '../conversion/change-node.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LocalStorageItem {
+
+
+   selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.changeNodeService.units);
+
+  constructor(private changeNodeService: ChangeNodeService) {}
+
+
+  selectNode(selectedItem: MeasurementUnit) {
+    const parentNode = this.changeNodeService.travelTreeForSelect(this.changeNodeService.units, selectedItem.parentId);
+    const arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
+    this.selectedItem.next(arrayWithSelectedAndParent);
+  }
+
+}

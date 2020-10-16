@@ -1,0 +1,24 @@
+<h3 *ngIf = "data.dialogType">Edit name and factor for actual <{{data.unitM.name}}></h3>
+<h3 *ngIf = "!data.dialogType">Add element to <{{data.unitM.name}}></h3>
+<p>
+  <mat-form-field>
+    <input matInput placeholder="name"
+           type="text"
+           [(ngModel)] = "nameNewNode"
+           name="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="multiplicationFactor"
+           type="number"
+           [(ngModel)] = "multiplicationFactor"
+           name="multiplicationFactor">
+  </mat-form-field>
+</p>
+
+<div mat-dialog-actions *ngIf = "data.dialogType">
+  <button mat-button  mat-dialog-close (click)="editNode(data.unitM) ">Edit</button>
+</div>
+<div mat-dialog-actions *ngIf = "!data.dialogType">
+  <button mat-button  mat-dialog-close (click)="addNode(data.unitM) ">Add</button>
+</div>
+
