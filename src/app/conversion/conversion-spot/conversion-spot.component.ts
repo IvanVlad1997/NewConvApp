@@ -1,16 +1,15 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ChangeNodeService} from '../change-node.service';
-
 import {MeasurementUnit} from '../../shared/measurementUnit.model';
 import {Subscription} from 'rxjs';
 
-
 @Component({
-  selector: 'app-converison-spot',
-  templateUrl: './converison-spot.component.html',
-  styleUrls: ['./converison-spot.component.css']
+  selector: 'app-conversion-spot',
+  templateUrl: './conversion-spot.component.html',
+  styleUrls: ['./conversion-spot.component.css']
 })
-export class ConverisonSpotComponent implements OnInit, OnDestroy {
+
+export class ConversionSpotComponent implements OnInit, OnDestroy {
   value = 0;
   outputValue: number;
   arrayWithSelectedAndParent: MeasurementUnit[];

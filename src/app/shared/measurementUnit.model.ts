@@ -1,5 +1,4 @@
 export interface MeasurementUnit {
-
   name: string;
   id: number;
   nodes: MeasurementUnit[];

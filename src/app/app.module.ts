@@ -10,16 +10,16 @@ import { ConversionComponent } from './conversion/conversion.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatListModule } from '@angular/material/list';
-import { MatFormFieldModule }  from '@angular/material/form-field';
-import { MatInputModule }  from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from "@angular/material/icon";
-import { MatSelectModule } from "@angular/material/select";
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DialogEditComponent } from './conversion/dialog-edit/dialog-edit.component';
-import { ConverisonSpotComponent } from './conversion/converison-spot/converison-spot.component';
+import { ConversionSpotComponent } from './conversion/conversion-spot/conversion-spot.component';
 import { MatButtonModule } from '@angular/material/button';
 
 
@@ -30,7 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
     ConversionComponent,
 
     DialogEditComponent,
-    ConverisonSpotComponent,
+    ConversionSpotComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +48,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
 
   providers: [],
-  entryComponents:[ DialogEditComponent],
+  entryComponents: [ DialogEditComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

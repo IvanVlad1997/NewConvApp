@@ -6,10 +6,10 @@ import {MeasurementUnit} from '../shared/measurementUnit.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ChangeNodeService {
   units = UNITS;
   private lastId = 10;
-
   private selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.units);
   cast = this.selectedItem.asObservable();
 
@@ -26,6 +26,7 @@ export class ChangeNodeService {
     }
     return this.units;
   }
+
   setCounterInLocalStorage(lastId: number) {
     localStorage.setItem(`counter`, JSON.stringify(lastId));
   }
@@ -79,8 +80,8 @@ export class ChangeNodeService {
       if (parentId === parentNode.id) {
         return parentNode;
       }
-        newResult = this.travelTreeForSelect(parentNode.nodes, parentId);
-        if (newResult !== undefined) {
+      newResult = this.travelTreeForSelect(parentNode.nodes, parentId);
+      if (newResult !== undefined) {
           break;
 
       }

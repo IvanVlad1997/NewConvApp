@@ -2,9 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { MeasurementUnit } from 'src/app/shared/measurementUnit.model';
 import {ChangeNodeService} from '../change-node.service';
 import {MatDialog} from '@angular/material/dialog';
-
 import {DialogEditComponent} from '../dialog-edit/dialog-edit.component';
-
 
 @Component({
   selector: 'app-tree-view',
@@ -25,8 +23,7 @@ export class TreeViewComponent implements OnInit {
 
   addNode(unit) {
     this.dialog.open(DialogEditComponent, {
-      data: { unitM: unit, dialogType: false},
-
+      data: { unitM: unit, dialogType: false}
     });
   }
 
@@ -36,7 +33,7 @@ export class TreeViewComponent implements OnInit {
 
   editNode(unit: MeasurementUnit) {
     this.dialog.open(DialogEditComponent, {
-      data: { unitM: unit, dialogType: true},
+      data: { unitM: unit, dialogType: true}
     });
   }
 

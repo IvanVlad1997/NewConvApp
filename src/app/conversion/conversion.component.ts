@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UNITS} from '../shared/unitsArray';
-import {ChangeNodeService} from "./change-node.service";
-
+import {ChangeNodeService} from './change-node.service';
 
 @Component({
   selector: 'app-conversion',
