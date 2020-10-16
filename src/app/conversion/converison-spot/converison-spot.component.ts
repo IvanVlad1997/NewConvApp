@@ -1,8 +1,8 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-import {UNITS} from "../../shared/unitsArray";
-import {ChangeNodeService} from "../change-node.service";
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ChangeNodeService} from '../change-node.service';
 
-import {MeasurementUnit} from "../../shared/measurementUnit.model";
+import {MeasurementUnit} from '../../shared/measurementUnit.model';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -10,38 +10,33 @@ import {MeasurementUnit} from "../../shared/measurementUnit.model";
   templateUrl: './converison-spot.component.html',
   styleUrls: ['./converison-spot.component.css']
 })
-export class ConverisonSpotComponent implements OnInit {
+export class ConverisonSpotComponent implements OnInit, OnDestroy {
   value = 0;
   outputValue: number;
-  units = UNITS;
   arrayWithSelectedAndParent: MeasurementUnit[];
   selectedNode: MeasurementUnit;
   parentNode: MeasurementUnit ;
   selectedValue: string;
+  private subscription: Subscription = new Subscription();
 
-
-
-  constructor(private changeNodeService: ChangeNodeService) {
-  }
+  constructor(private changeNodeService: ChangeNodeService) {}
 
   ngOnInit() {
-    this.changeNodeService.cast.subscribe(array => {
-      this.arrayWithSelectedAndParent = array
+    this.subscription = this.changeNodeService.cast.subscribe(array => {
+      this.arrayWithSelectedAndParent = array;
       this.selectedNode  = this.arrayWithSelectedAndParent[0] ;
       this.parentNode = this.arrayWithSelectedAndParent[1];
-
     });
+  }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   changeInput() {
-    console.log(this.selectedValue)
-    let output = this.parentNode.nodes.filter((out) => out.name === this.selectedValue)[0]
-    console.log(output)
+    const output = this.parentNode.nodes.filter((out) => out.name === this.selectedValue)[0];
     if (this.selectedValue !== undefined) {
       this.outputValue = this.value * this.selectedNode.factor / output.factor;
     }
   }
-
-
 }

@@ -13,16 +13,12 @@ export class DialogComponent implements OnInit {
   multiplicationFactor = 1;
 
   constructor(private changeNodeService: ChangeNodeService,
-              @Inject(MAT_DIALOG_DATA) public data: MeasurementUnit
-  ) { }
+              @Inject(MAT_DIALOG_DATA) public data: MeasurementUnit) { }
 
   ngOnInit() {
   }
 
   addNode(parent) {
-    console.log(parent);
-    console.log(this.nameNewNode);
     this.changeNodeService.addNode(parent, this.nameNewNode, this.multiplicationFactor);
   }
-
 }

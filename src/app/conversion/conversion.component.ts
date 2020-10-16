@@ -13,8 +13,6 @@ export class ConversionComponent implements OnInit {
   constructor(private changeNodeService: ChangeNodeService) {}
 
   ngOnInit() {
-
     this.units = this.changeNodeService.getFromLocalStorage();
-    console.log(this.units)
   }
 }

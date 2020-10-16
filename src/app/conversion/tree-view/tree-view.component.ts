@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Injector, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { MeasurementUnit } from 'src/app/shared/measurementUnit.model';
 import {ChangeNodeService} from '../change-node.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -12,17 +12,13 @@ import {DialogEditComponent} from '../dialog-edit/dialog-edit.component';
   styleUrls: ['./tree-view.component.css']
 })
 export class TreeViewComponent implements OnInit {
-
   selected: MeasurementUnit;
   @Input() treeView: MeasurementUnit;
 
   constructor(private changeNodeService: ChangeNodeService,
-              public dialog: MatDialog) {
-  }
+              public dialog: MatDialog) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   openDialog(unit) {
     this.dialog.open(DialogComponent, {
@@ -31,21 +27,17 @@ export class TreeViewComponent implements OnInit {
   }
 
   deleteNode(unit: MeasurementUnit) {
-    console.log(unit);
     this.changeNodeService.deleteNode(unit);
   }
 
   editNode(unit: MeasurementUnit) {
-    console.log(unit);
     this.dialog.open(DialogEditComponent, {
       data: unit
     });
   }
 
   selectNode(unit: MeasurementUnit) {
-    console.log(unit)
     this.selected = unit;
     this.changeNodeService.selectNode(unit);
   }
-
 }
