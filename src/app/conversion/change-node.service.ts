@@ -1,7 +1,8 @@
-import {BehaviorSubject} from 'rxjs';
+
 import {Injectable} from '@angular/core';
 import {UNITS} from '../shared/unitsArray';
 import {MeasurementUnit} from '../shared/measurementUnit.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,6 @@ import {MeasurementUnit} from '../shared/measurementUnit.model';
 export class ChangeNodeService {
   units = UNITS;
   private lastId = 10;
-
-  private selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.units);
-  cast = this.selectedItem.asObservable();
 
   constructor() {}
 
@@ -35,6 +33,10 @@ export class ChangeNodeService {
   }
 
   addNode(parent: MeasurementUnit, nameNewNode: string, multiplicationFactor: number): void {
+    console.log(parent)
+    console.log(nameNewNode);
+    console.log(multiplicationFactor)
+
     this.lastId++;
     this.setCounterInLocalStorage(this.lastId);
     parent.nodes.push({
@@ -43,6 +45,7 @@ export class ChangeNodeService {
       id: this.lastId,
       parentId: parent.id,
       factor: multiplicationFactor,
+      drop: false,
     });
     this.setInLocalStorage(this.units);
   }
@@ -62,12 +65,6 @@ export class ChangeNodeService {
     this.setInLocalStorage(this.units);
   }
 
-  selectNode(selectedItem: MeasurementUnit) {
-    const parentNode = this.travelTreeForSelect(this.units, selectedItem.parentId);
-    const arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
-    this.selectedItem.next(arrayWithSelectedAndParent);
-  }
-
   travelTreeForSelect(units: MeasurementUnit[], parentId: number): MeasurementUnit {
     let newResult: MeasurementUnit;
     let parentNode: MeasurementUnit;
@@ -78,8 +75,8 @@ export class ChangeNodeService {
       if (parentId === parentNode.id) {
         return parentNode;
       }
-        newResult = this.travelTreeForSelect(parentNode.nodes, parentId);
-        if (newResult !== undefined) {
+      newResult = this.travelTreeForSelect(parentNode.nodes, parentId);
+      if (newResult !== undefined) {
           break;
 
       }

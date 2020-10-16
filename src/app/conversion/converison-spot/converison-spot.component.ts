@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ChangeNodeService} from '../change-node.service';
-
 import {MeasurementUnit} from '../../shared/measurementUnit.model';
 import {Subscription} from 'rxjs';
+import {SelectedItemStorage} from '../selected-item-storage';
+import {ChangeNodeService} from '../change-node.service';
 
 
 @Component({
@@ -17,12 +17,14 @@ export class ConverisonSpotComponent implements OnInit, OnDestroy {
   selectedNode: MeasurementUnit;
   parentNode: MeasurementUnit ;
   selectedValue: string;
-  private subscription: Subscription = new Subscription();
+  private changeNodeService: ChangeNodeService = new ChangeNodeService();
+  selectedItemStorage: SelectedItemStorage = new SelectedItemStorage(this.changeNodeService)
+  private subscription: Subscription;
 
-  constructor(private changeNodeService: ChangeNodeService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.subscription = this.changeNodeService.cast.subscribe(array => {
+    this.subscription = this.selectedItemStorage.selectedItem.subscribe(array => {
       this.arrayWithSelectedAndParent = array;
       this.selectedNode  = this.arrayWithSelectedAndParent[0] ;
       this.parentNode = this.arrayWithSelectedAndParent[1];

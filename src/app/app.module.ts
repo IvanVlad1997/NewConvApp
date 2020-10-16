@@ -13,11 +13,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule }  from '@angular/material/form-field';
 import { MatInputModule }  from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from "@angular/material/icon";
-import { MatSelectModule } from "@angular/material/select";
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogComponent } from './conversion/dialog/dialog.component';
+
 import { DialogEditComponent } from './conversion/dialog-edit/dialog-edit.component';
 import { ConverisonSpotComponent } from './conversion/converison-spot/converison-spot.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,7 +29,6 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     TreeViewComponent,
     ConversionComponent,
-    DialogComponent,
     DialogEditComponent,
     ConverisonSpotComponent,
   ],
@@ -44,11 +44,12 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatSelectModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+
   ],
 
   providers: [],
-  entryComponents:[DialogComponent, DialogEditComponent],
+  entryComponents: [ DialogEditComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

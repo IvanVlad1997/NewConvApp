@@ -4,5 +4,6 @@ export interface MeasurementUnit {
     nodes: MeasurementUnit[];
     parentId?: number;
     factor: number;
+    drop: boolean;
 }
 

@@ -12,6 +12,7 @@ export class DialogEditComponent implements OnInit {
   nameNewNode = '';
   multiplicationFactor = 1;
 
+
   constructor(private changeNodeService: ChangeNodeService,
               @Inject(MAT_DIALOG_DATA) public data: MeasurementUnit) { }
 
@@ -19,6 +20,12 @@ export class DialogEditComponent implements OnInit {
   }
 
   editNode(parent) {
+
     this.changeNodeService.editNode(parent, this.nameNewNode, this.multiplicationFactor);
+  }
+
+  addNode(parent) {
+
+    this.changeNodeService.addNode(parent, this.nameNewNode, this.multiplicationFactor);
   }
 }
