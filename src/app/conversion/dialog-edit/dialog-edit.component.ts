@@ -1,7 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {ChangeNodeService} from '../change-node.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {MeasurementUnit} from '../../shared/measurementUnit.model';
+
 
 @Component({
   selector: 'app-dialog-edit',
@@ -9,12 +9,15 @@ import {MeasurementUnit} from '../../shared/measurementUnit.model';
   styleUrls: ['./dialog-edit.component.css']
 })
 export class DialogEditComponent implements OnInit {
+
   nameNewNode = '';
   multiplicationFactor = 1;
 
 
   constructor(private changeNodeService: ChangeNodeService,
-              @Inject(MAT_DIALOG_DATA) public data: MeasurementUnit) { }
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+
+  }
 
   ngOnInit() {
 
@@ -29,4 +32,6 @@ export class DialogEditComponent implements OnInit {
 
     this.changeNodeService.addNode(parent, this.nameNewNode, this.multiplicationFactor);
   }
+
+
 }

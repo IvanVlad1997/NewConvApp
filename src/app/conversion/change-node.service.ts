@@ -43,6 +43,7 @@ export class ChangeNodeService {
       id: this.lastId,
       parentId: parent.id,
       factor: multiplicationFactor,
+      drop: false
     });
     this.setInLocalStorage(this.units);
   }
