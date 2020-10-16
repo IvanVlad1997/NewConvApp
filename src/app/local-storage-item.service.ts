@@ -1,13 +1,14 @@
+import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {MeasurementUnit} from '../shared/measurementUnit.model';
-import {ChangeNodeService} from '../conversion/change-node.service';
+import {MeasurementUnit} from './shared/measurementUnit.model';
+import {ChangeNodeService} from './conversion/change-node.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LocalStorageItem {
-  selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.changeNodeService.units);
+export class LocalStorageItemService {
+  private selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.changeNodeService.units);
+  cast = this.selectedItem.asObservable();
   constructor(private changeNodeService: ChangeNodeService) {}
 
   selectNode(selectedItem: MeasurementUnit) {
@@ -15,5 +16,6 @@ export class LocalStorageItem {
     const arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
     this.selectedItem.next(arrayWithSelectedAndParent);
   }
+
 
 }

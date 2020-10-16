@@ -2,6 +2,8 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ChangeNodeService} from '../change-node.service';
 import {MeasurementUnit} from '../../shared/measurementUnit.model';
 import {Subscription} from 'rxjs';
+import {LocalStorageItemService} from '../../local-storage-item.service';
+
 
 @Component({
   selector: 'app-conversion-spot',
@@ -18,10 +20,12 @@ export class ConversionSpotComponent implements OnInit, OnDestroy {
   selectedValue: string;
   private subscription: Subscription;
 
-  constructor(private changeNodeService: ChangeNodeService) {}
+  constructor(private changeNodeService: ChangeNodeService,
+              private localStorageItem: LocalStorageItemService,
+              ) {}
 
   ngOnInit() {
-    this.subscription = this.changeNodeService.cast.subscribe(array => {
+    this.subscription = this.localStorageItem.cast.subscribe(array => {
       this.arrayWithSelectedAndParent = array;
       this.selectedNode  = this.arrayWithSelectedAndParent[0] ;
       this.parentNode = this.arrayWithSelectedAndParent[1];

@@ -1,6 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {ChangeNodeService} from '../change-node.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+// @ts-ignore
 import {DataType} from '../../shared/forData';
 
 @Component({

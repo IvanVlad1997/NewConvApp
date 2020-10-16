@@ -10,8 +10,8 @@ import {MeasurementUnit} from '../shared/measurementUnit.model';
 export class ChangeNodeService {
   units = UNITS;
   private lastId = 10;
-  private selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.units);
-  cast = this.selectedItem.asObservable();
+  // private selectedItem = new BehaviorSubject<MeasurementUnit[]>(this.units);
+  // cast = this.selectedItem.asObservable();
 
   constructor() {}
 
@@ -64,11 +64,11 @@ export class ChangeNodeService {
     this.setInLocalStorage(this.units);
   }
 
-  selectNode(selectedItem: MeasurementUnit) {
-    const parentNode = this.travelTreeForSelect(this.units, selectedItem.parentId);
-    const arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
-    this.selectedItem.next(arrayWithSelectedAndParent);
-  }
+  // selectNode(selectedItem: MeasurementUnit) {
+  //   const parentNode = this.travelTreeForSelect(this.units, selectedItem.parentId);
+  //   const arrayWithSelectedAndParent: MeasurementUnit[] = [selectedItem, parentNode];
+  //   this.selectedItem.next(arrayWithSelectedAndParent);
+  // }
 
   travelTreeForSelect(units: MeasurementUnit[], parentId: number): MeasurementUnit {
     let newResult: MeasurementUnit;

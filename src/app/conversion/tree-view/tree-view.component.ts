@@ -3,6 +3,8 @@ import { MeasurementUnit } from 'src/app/shared/measurementUnit.model';
 import {ChangeNodeService} from '../change-node.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogEditComponent} from '../dialog-edit/dialog-edit.component';
+import {LocalStorageItemService} from '../../local-storage-item.service';
+
 
 @Component({
   selector: 'app-tree-view',
@@ -14,10 +16,13 @@ export class TreeViewComponent implements OnInit {
   selected: MeasurementUnit;
   toggleButtons = false;
 
+
   @Input() treeView: MeasurementUnit;
 
   constructor(private changeNodeService: ChangeNodeService,
-              public dialog: MatDialog) {}
+              private localStorageItem: LocalStorageItemService,
+              public dialog: MatDialog,
+             ) {}
 
   ngOnInit() {}
 
@@ -39,7 +44,7 @@ export class TreeViewComponent implements OnInit {
 
   selectNode(unit: MeasurementUnit) {
     this.selected = unit;
-    this.changeNodeService.selectNode(unit);
+    this.localStorageItem.selectNode(unit);
   }
 
   handleToggleButtons(toggleButtons: boolean, unit: MeasurementUnit) {
