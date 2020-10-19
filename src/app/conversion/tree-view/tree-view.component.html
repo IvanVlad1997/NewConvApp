@@ -1,22 +1,25 @@
 <div *ngIf="treeView">
-  <ul class="list-unstyled" >
-    <li  *ngFor="let unit of treeView" >
-      <button mat-icon-button (click) = "handleToggleCategory(unit)" >
-        <span *ngIf="unit.drop"><mat-icon >keyboard_arrow_down</mat-icon></span>
-        <span *ngIf="!unit.drop"><mat-icon >keyboard_arrow_right</mat-icon> </span>
-      </button>
-        <span>
-               <button  mat-stroked-button color="primary" (click)="selectNode(unit)">{{unit.name}}({{unit.nodes.length}})</button>
-               <button mat-icon-button (click) = "handleToggleButtons(toggleButtons, unit)" >
+  <ul class="list-unstyled">
+    <li *ngFor="let unit of treeView">
+
+      <ng-container>
+              <button mat-icon-button (click)="handleToggleCategory(unit)">
+               <mat-icon *ngIf="unit.drop">keyboard_arrow_down</mat-icon>
+               <mat-icon *ngIf="!unit.drop">keyboard_arrow_right</mat-icon>
+              </button>
+               <button mat-stroked-button color="primary" (click)="selectNode(unit)">
+                 {{unit.name}}({{unit.nodes.length}})
+               </button>
+               <button mat-icon-button (click)="handleToggleButtons(toggleButtons, unit)">
                   <mat-icon>add</mat-icon>
                </button>
-               <span *ngIf="toggleButtons && (unit.id ===selected.id)">
-                 <button  mat-button color="primary" (click)="addNode(unit)" > Add</button>
-                 <button mat-button color="primary" (click) ="deleteNode(unit)"> Delete</button>
-                 <button mat-button color="primary" (click) ="editNode(unit)">Edit</button>
-               </span>
-                  <app-tree-view *ngIf="unit.nodes.length >0 && unit.drop" [treeView]="unit.nodes" ></app-tree-view>
-        </span>
+               <ng-container *ngIf="toggleButtons && (unit.id ===selected.id)">
+                 <button mat-button color="primary" (click)="addNode(unit)"> Add</button>
+                 <button mat-button color="primary" (click)="deleteNode(unit)"> Delete</button>
+                 <button mat-button color="primary" (click)="editNode(unit)">Edit</button>
+               </ng-container>
+                  <app-tree-view *ngIf="unit.nodes.length >0 && unit.drop" [treeView]="unit.nodes"></app-tree-view>
+        </ng-container>
     </li>
   </ul>
 </div>

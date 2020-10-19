@@ -1,4 +1,4 @@
-import {MeasurementUnit} from './measurementUnit.model';
+import {MeasurementUnit} from './measurement-unit';
 
 export const  UNITS: MeasurementUnit[] = [
   {

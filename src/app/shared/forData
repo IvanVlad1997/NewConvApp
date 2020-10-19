@@ -1,6 +1,0 @@
-import {MeasurementUnit} from './measurementUnit.model';
-
-export interface DataType {
-  unitM: MeasurementUnit;
-  dialogType: boolean;
-}

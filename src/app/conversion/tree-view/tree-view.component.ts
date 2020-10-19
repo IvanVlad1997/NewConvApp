@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { MeasurementUnit } from 'src/app/shared/measurementUnit.model';
-import {ChangeNodeService} from '../change-node.service';
+import { MeasurementUnit } from 'src/app/shared/measurement-unit';
+import {ChangeNode} from '../../services/change-node';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogEditComponent} from '../dialog-edit/dialog-edit.component';
-import {LocalStorageItemService} from '../../local-storage-item.service';
+import {LocalStorageItem} from '../../services/local-storage-item';
 
 
 @Component({
@@ -17,10 +17,10 @@ export class TreeViewComponent implements OnInit {
   toggleButtons = false;
 
 
-  @Input() treeView: MeasurementUnit;
+  @Input() treeView: MeasurementUnit[];
 
-  constructor(private changeNodeService: ChangeNodeService,
-              private localStorageItem: LocalStorageItemService,
+  constructor(private changeNodeService: ChangeNode,
+              private localStorageItem: LocalStorageItem,
               public dialog: MatDialog,
              ) {}
 
@@ -28,7 +28,7 @@ export class TreeViewComponent implements OnInit {
 
   addNode(unit) {
     this.dialog.open(DialogEditComponent, {
-      data: { unitM: unit, dialogType: false}
+      data: { unitM: unit, dialogType: false, initialValueName: '', initialValueFactor: 1}
     });
   }
 
@@ -38,7 +38,7 @@ export class TreeViewComponent implements OnInit {
 
   editNode(unit: MeasurementUnit) {
     this.dialog.open(DialogEditComponent, {
-      data: { unitM: unit, dialogType: true}
+      data: { unitM: unit, dialogType: true, initialValueName: unit.name, initialValueFactor: unit.factor}
     });
   }
 

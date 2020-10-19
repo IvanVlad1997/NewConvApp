@@ -21,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogEditComponent } from './conversion/dialog-edit/dialog-edit.component';
 import { ConversionSpotComponent } from './conversion/conversion-spot/conversion-spot.component';
 import { MatButtonModule } from '@angular/material/button';
+import {ChangeNode} from './services/change-node';
+import {LocalStorageItem} from './services/local-storage-item';
 
 
 @NgModule({
@@ -47,7 +49,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule
   ],
 
-  providers: [],
+  providers: [ChangeNode, LocalStorageItem],
   entryComponents: [ DialogEditComponent ],
   bootstrap: [AppComponent]
 })

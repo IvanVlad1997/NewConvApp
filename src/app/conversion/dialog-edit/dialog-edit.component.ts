@@ -1,8 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {ChangeNodeService} from '../change-node.service';
+import {ChangeNode} from '../../services/change-node';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-// @ts-ignore
-import {DataType} from '../../shared/forData';
+import {DataType} from '../../shared/for-data';
 
 @Component({
   selector: 'app-dialog-edit',
@@ -11,16 +10,18 @@ import {DataType} from '../../shared/forData';
 })
 
 export class DialogEditComponent implements OnInit {
-  nameNewNode = '';
-  multiplicationFactor = 1;
+  nameNewNode = this.data.initialValueName;
+  multiplicationFactor = this.data.initialValueFactor;
 
-  constructor(private changeNodeService: ChangeNodeService,
+  constructor(private changeNodeService: ChangeNode,
               @Inject(MAT_DIALOG_DATA) public data: DataType) {}
 
   ngOnInit() {}
 
   editNode(parent) {
-    this.changeNodeService.editNode(parent, this.nameNewNode, this.multiplicationFactor);
+    parent.name = this.nameNewNode;
+    parent.factor = this.multiplicationFactor;
+    this.changeNodeService.editNode(parent);
   }
 
   addNode(parent) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UNITS} from '../shared/unitsArray';
-import {ChangeNodeService} from './change-node.service';
+import {UNITS} from '../shared/units-array';
+import {ChangeNode} from '../services/change-node';
 
 @Component({
   selector: 'app-conversion',
@@ -9,7 +9,7 @@ import {ChangeNodeService} from './change-node.service';
 })
 export class ConversionComponent implements OnInit {
   units = UNITS;
-  constructor(private changeNodeService: ChangeNodeService) {}
+  constructor(private changeNodeService: ChangeNode) {}
 
   ngOnInit() {
     this.units = this.changeNodeService.getFromLocalStorage();
